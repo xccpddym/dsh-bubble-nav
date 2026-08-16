@@ -20,8 +20,8 @@
 ### 一键安装（推荐）
 
 ```powershell
-# 进入插件仓库目录
-cd C:\Users\lsq\.dsh\plugins\dsh-bubble-nav
+# 先进入插件仓库目录（clone 或下载解压后、包含 install.ps1 的位置）
+cd <你的仓库目录>
 .\install.ps1
 ```
 
@@ -35,8 +35,9 @@ cd C:\Users\lsq\.dsh\plugins\dsh-bubble-nav
 ### 手动安装
 
 ```powershell
-# 1) 装进 web profile 依赖树（这是解析链可达的唯一正确位置）
-dsh plugin --profile web add "dsh-bubble-nav@file:C:\Users\lsq\.dsh\plugins\dsh-bubble-nav"
+# 先进入插件仓库目录，再执行（file: 需要绝对路径，这里动态取当前目录）
+cd <你的仓库目录>
+dsh plugin --profile web add "dsh-bubble-nav@file:$((Get-Location).Path)"
 
 # 2) 在 ~/.dsh/cordis.patch.yml 末尾追加
 # - insert:
@@ -47,7 +48,7 @@ dsh plugin --profile web add "dsh-bubble-nav@file:C:\Users\lsq\.dsh\plugins\dsh-
 dsh --profile web --dump-config
 ```
 
-> ⚠️ 不要直接把插件复制到全局 `node_modules`（如 `D:\Node.js\node_global\node_modules`）。
+> ⚠️ 不要直接把插件复制到全局 `node_modules`（例如 `npm root -g` 输出的目录）。
 > dsh 的插件解析锚点是 profile 目录，全局 node_modules 不在解析链上；
 > 只复制包 + 加启用条目会导致 `Cannot find package 'dsh-bubble-nav'`，dsh 启动即崩（fail-loud）。
 
@@ -63,7 +64,7 @@ dsh --profile web --dump-config
 ## 🗑 卸载
 
 ```powershell
-cd C:\Users\lsq\.dsh\plugins\dsh-bubble-nav
+cd <你的仓库目录>
 .\install.ps1 -Uninstall
 ```
 
