@@ -23,19 +23,30 @@ Write-Host '== dsh-bubble-nav 安装 ==' -ForegroundColor Cyan
 # ── [1/3] 定位 DSH 安装目录 ──────────────────────────────
 $nm = $DshNodeModules
 if (-not $nm) {
-  $candidates = @()
-  if ($env:LOCALAPPDATA) { $candidates += (Join-Path $env:LOCALAPPDATA 'npm-cache\_npx') }
-  if (Test-Path 'D:\Node.js\node_cache\_npx') { $candidates += 'D:\Node.js\node_cache\_npx' }
+  # ① npm 全局安装（推荐，例如 npm i -g @deepseek-ai/dsh）
   try {
-    $cache = npm config get cache 2>$null
-    if ($cache -and (Test-Path $cache)) { $candidates += (Join-Path $cache '_npx') }
+    $g = npm root -g 2>$null
+    if ($g -and (Test-Path (Join-Path $g '@deepseek-ai\dsh\package.json'))) {
+      $nm = $g
+      Write-Host "[1/3] 检测到全局安装: $nm"
+    }
   } catch {}
-  foreach ($c in $candidates) {
-    if (-not (Test-Path $c)) { continue }
-    $hit = Get-ChildItem $c -Directory -ErrorAction SilentlyContinue |
-      Where-Object { Test-Path (Join-Path $_.FullName 'node_modules\@deepseek-ai\dsh\package.json') } |
-      Sort-Object LastWriteTime -Descending | Select-Object -First 1
-    if ($hit) { $nm = Join-Path $hit.FullName 'node_modules'; break }
+  # ② npx 缓存
+  if (-not $nm) {
+    $candidates = @()
+    if ($env:LOCALAPPDATA) { $candidates += (Join-Path $env:LOCALAPPDATA 'npm-cache\_npx') }
+    if (Test-Path 'D:\Node.js\node_cache\_npx') { $candidates += 'D:\Node.js\node_cache\_npx' }
+    try {
+      $cache = npm config get cache 2>$null
+      if ($cache -and (Test-Path $cache)) { $candidates += (Join-Path $cache '_npx') }
+    } catch {}
+    foreach ($c in $candidates) {
+      if (-not (Test-Path $c)) { continue }
+      $hit = Get-ChildItem $c -Directory -ErrorAction SilentlyContinue |
+        Where-Object { Test-Path (Join-Path $_.FullName 'node_modules\@deepseek-ai\dsh\package.json') } |
+        Sort-Object LastWriteTime -Descending | Select-Object -First 1
+      if ($hit) { $nm = Join-Path $hit.FullName 'node_modules'; break }
+    }
   }
   if (-not $nm) {
     Write-Error '未自动找到 DSH 安装目录。请用 -DshNodeModules 参数指定 DSH 的 node_modules 路径后重试。'
