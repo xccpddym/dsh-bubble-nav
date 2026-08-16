@@ -1,5 +1,9 @@
 # dsh-bubble-nav
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![GitHub stars](https://img.shields.io/github/stars/xccpddym/dsh-bubble-nav)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20DSH-4d6bfe.svg)
+
 气泡导航插件 —— 为 [DSH（DeepSeek Harness）](https://github.com/deepseek-ai/deepseek-harness) 的 Web 界面提供**对话气泡导航**：一颗可拖拽的悬浮加速球列出你问过的所有问题（带序号与时间），另有全量「对话大纲」面板，点击即可在对话中精确定位。
 
 ![bubble](docs/bubble.png)

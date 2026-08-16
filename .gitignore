@@ -1,0 +1,13 @@
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
