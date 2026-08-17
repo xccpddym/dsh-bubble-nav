@@ -2,9 +2,11 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 与 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
-## [1.0.1] - 2026-08
+## [1.1.0] - 2026-08
 
-深度修复：消除导致 dsh 启动崩溃与功能失效的根因，并重写安装流程。
+### 新增
+
+- **npm 发布 + npx 一键安装器**：`npx dsh-bubble-nav` 一条命令完成「装进 profile 依赖树 + 追加启用条目 + dump-config 验证」，支持 `--profile` / `--uninstall` / `--check`；无需 clone 仓库。
 
 ### 修复
 
@@ -13,8 +15,12 @@
 - **apply 防御**：服务缺失、注册冲突全部降级为警告 + 空操作，插件永不因异常导致 Cordis fiber 失败（fail-loud 崩溃）。
 - **client.js `ctx` 悬空引用**：模块级函数引用了不存在的 `ctx`，首次防抖拉取即抛 `ReferenceError` 使 React 崩溃；改为在 `apply()` 中捕获 `pluginCtx`。
 - **client 依赖声明**：`exports.inject` 完整声明 `['slots', 'sessions', 'timer']`。
-- **安装流程 v2**：`install.ps1` 改为 `dsh plugin --profile web add "dsh-bubble-nav@file:..."` 装进 profile 依赖树。v1 把包复制到全局 `node_modules`——dsh 的插件解析锚点是 profile 目录，全局目录不在解析链上，会直接抛 `Cannot find package 'dsh-bubble-nav'` 让 dsh 启动崩溃（fail-loud）。
+- **安装流程 v2**：`install.ps1` 改为装进 profile 依赖树。v1 把包复制到全局 `node_modules`——dsh 的插件解析锚点是 profile 目录，全局目录不在解析链上，会直接抛 `Cannot find package 'dsh-bubble-nav'` 让 dsh 启动崩溃（fail-loud）。
 - **package.json**：补充 `peerDependencies: react`。
+
+## [1.0.1] - 2026-08
+
+深度修复：消除导致 dsh 启动崩溃与功能失效的根因，并重写安装流程。（该版本未独立发布到 npm，内容并入 1.1.0。）
 
 ## [1.0.0] - 2026-08
 

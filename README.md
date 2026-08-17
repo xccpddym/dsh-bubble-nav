@@ -20,17 +20,32 @@
 ### 一键安装（推荐）
 
 ```powershell
+npx dsh-bubble-nav
+```
+
+npx 自动下载安装器并完成全部步骤：
+
+1. 从 npm 把插件**装进 web profile 依赖树**（`dsh plugin --profile web add`）
+2. 在 `~/.dsh/cordis.patch.yml` 追加启用条目（幂等，重复执行安全）
+3. `dump-config` 验证配置能正常合成
+
+最后**重启 DSH** 即可生效。
+
+其他用法：
+
+```powershell
+npx dsh-bubble-nav --profile tui      # 安装到其他 profile
+npx dsh-bubble-nav --uninstall        # 卸载（移除依赖 + 启用条目）
+npx dsh-bubble-nav --check            # 只检测环境，不修改任何文件
+```
+
+### 源码安装（离线 / 开发者）
+
+```powershell
 # 先进入插件仓库目录（clone 或下载解压后、包含 install.ps1 的位置）
 cd <你的仓库目录>
 .\install.ps1
 ```
-
-脚本会：
-1. 用 `dsh plugin --profile web add "dsh-bubble-nav@file:..."` 把插件**装进 web profile 的依赖树**（pnpm 管理，Cordis 能解析到）
-2. 在 `~/.dsh/cordis.patch.yml` 追加启用条目（已存在则跳过）
-3. 用 `dsh --profile web --dump-config` 验证配置能正常合成
-
-最后**重启 DSH** 即可生效。
 
 ### 手动安装
 
