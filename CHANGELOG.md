@@ -2,6 +2,12 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 与 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.1.1] - 2026-08
+
+### 变更
+
+- **README 完善**：新增 npm 徽章（版本/下载量/License）、两张真实使用截图（`docs/`）、工作原理说明与常见问题 FAQ；同步更新 npm 包页面展示。
+
 ## [1.1.0] - 2026-08
 
 ### 新增
