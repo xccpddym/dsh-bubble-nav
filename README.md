@@ -19,7 +19,7 @@
 
 | 加速球 + 问题列表 | 全量对话大纲 |
 | --- | --- |
-| ![加速球 + 问题列表](docs/screenshot-ball.png) | ![全量对话大纲](docs/screenshot-outline.png) |
+| ![加速球 + 问题列表](https://raw.githubusercontent.com/xccpddym/dsh-bubble-nav/main/docs/screenshot-ball.png) | ![全量对话大纲](https://raw.githubusercontent.com/xccpddym/dsh-bubble-nav/main/docs/screenshot-outline.png) |
 
 ## 📦 安装
 

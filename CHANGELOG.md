@@ -2,6 +2,12 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 与 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.1.2] - 2026-08
+
+### 修复
+
+- **npm 页面 README 截图**：截图改引用 GitHub raw 地址（npm 页面不托管包内文件的浏览 URL，相对路径会裂图）；`docs/` 加入打包 `files`，图片随包分发。
+
 ## [1.1.1] - 2026-08
 
 ### 变更

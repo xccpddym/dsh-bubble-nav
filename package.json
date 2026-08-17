@@ -1,7 +1,7 @@
 {
   "name": "dsh-bubble-nav",
   "description": "Bubble navigation for dsh: a draggable accelerator ball listing all of your questions (numbered + timed), plus a full outline panel with category filters. Hover/click to jump anywhere in the conversation.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -19,6 +19,7 @@
   "files": [
     "lib",
     "bin",
+    "docs",
     "install.ps1",
     "README.md",
     "LICENSE",
